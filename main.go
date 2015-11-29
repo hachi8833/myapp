@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"net/http"
 
 	af "github.com/elazarl/go-bindata-assetfs"
@@ -17,7 +16,6 @@ type context struct {
 }
 
 func main() {
-	flag.Set("bind", ":3981")
 	goji.DefaultMux.Get("/", index)
 	goji.DefaultMux.Handle("/static/*", static)
 	goji.Serve()
