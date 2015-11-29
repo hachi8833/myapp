@@ -4,6 +4,7 @@ import (
 	"flag"
 	"net/http"
 
+	af "github.com/elazarl/go-bindata-assetfs"
 	ur "github.com/unrolled/render"
 	"github.com/zenazn/goji"
 )
@@ -18,6 +19,7 @@ type context struct {
 func main() {
 	flag.Set("bind", ":3981")
 	goji.DefaultMux.Get("/", index)
+	goji.DefaultMux.Get("/static/*", static)
 	goji.Serve()
 }
 
@@ -29,6 +31,11 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 	re := setLayout()
 	re.HTML(w, http.StatusOK, "index", ctx)
+}
+
+func static(w http.ResponseWriter, r *http.Request) {
+	http.FileServer(
+		&af.AssetFS{Asset: Asset, AssetDir: AssetDir, Prefix: "02_dist/"})
 }
 
 func setLayout() *ur.Render {
