@@ -19,7 +19,7 @@ type context struct {
 func main() {
 	flag.Set("bind", ":3981")
 	goji.DefaultMux.Get("/", index)
-	goji.DefaultMux.Get("/static/*", static)
+	goji.DefaultMux.Handle("/static/*", static)
 	goji.Serve()
 }
 
