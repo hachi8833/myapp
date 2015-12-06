@@ -9,8 +9,8 @@ Temporal projects for questioning.
 1. `git clone https://github.com/hachi8833/myapp.git` to obtain this.
 2. `cd myapp`
 3. `go run main.go bindata.go`
-4. Open 'localhost:3981' and view the source.
-5. Check that 'styles/main.17e92ed5.css' and 'scripts/main.8bd37191.js' are 'Not found'.
+4. Open 'localhost:8000' and view the source.
+5. Check that 'styles/main.17e92ed5.css' and 'scripts/main.8bd37191.js' on the source HTML are empty when opened. It is weird that HTTP status are all '200'.
 
 ## To recompile the bindata
 
