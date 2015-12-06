@@ -19,7 +19,7 @@ type context struct {
 func main() {
 	goji.Use(middleware.SubRouter)
 	goji.DefaultMux.Get("/", index)
-	goji.DefaultMux.Handle("/st/*", static)
+	goji.DefaultMux.Handle("/*", static)
 	goji.Serve()
 }
 
