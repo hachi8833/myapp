@@ -2,7 +2,14 @@
 Temporal projects for questioning. 
 
 ## Environment
-- Go 1.5.
+- Go 1.5. 
+
+## go get to build
+
+`go get "github.com/elazarl/go-bindata-assetfs"`
+`go get "github.com/unrolled/render"`
+`go get "github.com/zenazn/goji"`
+`go get "github.com/zenazn/goji/web/middleware"`
 
 ## To reproduce the issue
 
