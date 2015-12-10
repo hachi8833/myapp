@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	af "github.com/elazarl/go-bindata-assetfs"
+	"github.com/elazarl/go-bindata-assetfs"
 	ur "github.com/unrolled/render"
 	"github.com/zenazn/goji"
 	"github.com/zenazn/goji/web/middleware"
@@ -19,7 +19,7 @@ type context struct {
 func main() {
 	goji.Use(middleware.SubRouter)
 	goji.DefaultMux.Get("/", index)
-	goji.DefaultMux.Handle("/*", static)
+	goji.DefaultMux.Handle("/*", http.FileServer(&assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, Prefix: "02_dist"}))
 	goji.Serve()
 }
 
@@ -33,10 +33,11 @@ func index(w http.ResponseWriter, r *http.Request) {
 	re.HTML(w, http.StatusOK, "index", ctx)
 }
 
-func static(w http.ResponseWriter, r *http.Request) {
-	http.FileServer(
-		&af.AssetFS{Asset: Asset, AssetDir: AssetDir, Prefix: "02_dist"})
-}
+// func static(w http.ResponseWriter, r *http.Request) {
+// 	http.FileServer(
+// 		&af.AssetFS{Asset: Asset, AssetDir: AssetDir, Prefix: "02_dist"},
+// 	)
+// }
 
 func setLayout() *ur.Render {
 	return ur.New(ur.Options{
